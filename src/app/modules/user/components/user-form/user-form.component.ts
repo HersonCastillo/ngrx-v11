@@ -61,6 +61,7 @@ export class UserFormComponent implements OnChanges {
     const { valid, value } = this.userFormGroup;
     if (valid) {
       this.submit.emit(value);
+      this.userFormGroup.reset();
     }
   }
 }

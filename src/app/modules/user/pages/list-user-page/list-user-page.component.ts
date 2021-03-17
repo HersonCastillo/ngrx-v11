@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { getUsersList } from 'src/app/store/selectors/user.selectors';
+import { IAppState } from 'src/app/store/states/app.states';
 
 @Component({
   selector: 'app-list-user-page',
   templateUrl: './list-user-page.component.html',
   styleUrls: ['./list-user-page.component.scss']
 })
-export class ListUserPageComponent implements OnInit {
+export class ListUserPageComponent {
 
-  constructor() { }
+  users$ = this.store.select(getUsersList);
 
-  ngOnInit(): void {}
-
+  constructor(private store: Store<IAppState>) { }
 }

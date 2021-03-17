@@ -1,11 +1,11 @@
-<form (ngSubmit)="onSubmit()" [formGroup]="userFormGroup" class="app-form">
+<form [formGroup]="userFormGroup" class="app-form">
   <div class="app-form__field" *ngFor="let field of userFormFields">
     <label>{{field.label}}</label>
     <input [type]="field.type" [formControlName]="field.formControlName">
   </div>
 
   <div class="app-form__actions">    
-    <app-button type="submit">
+    <app-button (onclick)="onSubmit()">
       Submit
     </app-button>
   </div>

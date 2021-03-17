@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { ITableActions, ITableHeaders } from 'src/app/modules/shared/interfaces/table';
+import { deleteUser } from 'src/app/store/actions/user.actions';
+import { IAppState } from 'src/app/store/states/app.states';
 import { IUser } from '../../interfaces/user';
 
 @Component({
@@ -8,6 +12,8 @@ import { IUser } from '../../interfaces/user';
   styleUrls: ['./user-list-table.component.scss']
 })
 export class UserListTableComponent {
+  @Input() users!: IUser[];
+
   userTableHeaders: ITableHeaders[] = [
     {
       name: 'Name',
@@ -34,32 +40,16 @@ export class UserListTableComponent {
     },
   ];
 
-  users: IUser[] = [
-    {
-      id: 1,
-      name: 'Herson Castillo',
-      email: 'email@something.com',
-      createdAt: new Date().toDateString(),
-    },
-    {
-      id: 2,
-      name: 'John Paul',
-      email: 'email2@something.com',
-      createdAt: new Date().toDateString(),
-    },
-    {
-      id: 3,
-      name: 'Selena Carley',
-      email: 'email3@something.com',
-      createdAt: new Date(1999, 30, 1).toDateString(),
-    },
-  ];
+  constructor(
+    private store: Store<IAppState>,
+    private router: Router,
+  ) { }
 
-  editUser(user: IUser) {
-    console.log(user);
+  editUser({ id }: IUser) {
+    this.router.navigate(['/users', 'edit', id]);
   }
 
   deleteUser({ id }: IUser) {
-    console.log(id);
+    this.store.dispatch(deleteUser({ id }));
   }
 }

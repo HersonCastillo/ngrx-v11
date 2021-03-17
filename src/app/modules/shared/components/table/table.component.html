@@ -3,6 +3,9 @@
     <th *ngFor="let header of headers">
       {{ header.name }}
     </th>
+    <th *ngIf="actions.length > 0">
+      Actions
+    </th>
   </tr>
   <tr *ngFor="let data of dataset">
     <td *ngFor="let header of headers">
@@ -12,6 +15,11 @@
       <app-button (onclick)="action?.callback(data)">
         {{ action.buttonName }}
       </app-button>
+    </td>
+  </tr>
+  <tr *ngIf="dataset.length === 0">
+    <td [attr.colspan]="headers.length + (actions.length > 0 ? 1 : 0)">
+      No records to show
     </td>
   </tr>
 </table>

@@ -1,1 +1,3 @@
-<app-user-list-table></app-user-list-table>
+<app-user-list-table
+  [users]="users$ | async"
+></app-user-list-table>

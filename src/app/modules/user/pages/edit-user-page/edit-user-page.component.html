@@ -1,1 +1,4 @@
-<app-user-form></app-user-form>
+<app-user-form
+  [user]="user$ | async"
+  (submit)="onEditFormSubmit($event)"
+></app-user-form>
