@@ -1,0 +1,17 @@
+<table class="app-table">
+  <tr>
+    <th *ngFor="let header of headers">
+      {{ header.name }}
+    </th>
+  </tr>
+  <tr *ngFor="let data of dataset">
+    <td *ngFor="let header of headers">
+      {{ data[header.dataIndex] }}
+    </td>
+    <td *ngFor="let action of actions">
+      <app-button (onclick)="action?.callback(data)">
+        {{ action.buttonName }}
+      </app-button>
+    </td>
+  </tr>
+</table>
