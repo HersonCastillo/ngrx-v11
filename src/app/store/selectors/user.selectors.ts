@@ -15,3 +15,8 @@ export const getCurrentUser = createSelector(
     state.users.find((user) => (user?.id === userId))
   ),
 );
+
+export const getLoadingUser = createSelector(
+  getUserState,
+  (state) => (state.loading),
+);

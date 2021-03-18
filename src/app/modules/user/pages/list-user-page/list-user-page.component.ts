@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { getUsersList } from 'src/app/store/selectors/user.selectors';
 import { IAppState } from 'src/app/store/states/app.states';
+import { IUser } from '../../interfaces/user';
 
 @Component({
   selector: 'app-list-user-page',

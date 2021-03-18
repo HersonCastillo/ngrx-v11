@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { addUser, deleteUser, editUser } from '../actions/user.actions';
+import { addUser, deleteUser, editUser, toggleLoadingUser } from '../actions/user.actions';
 import { userInitialState } from '../states/user.states';
 
 export const userReducers = createReducer(
@@ -18,5 +18,9 @@ export const userReducers = createReducer(
       ...state.users.filter((user) => (user?.id !== id)),
       user,
     ],
+  })),
+  on(toggleLoadingUser, (state) => ({
+    ...state,
+    loading: !state.loading,
   })),
 );
