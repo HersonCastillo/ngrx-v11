@@ -41,10 +41,21 @@ export class UserFormComponent implements OnChanges {
     return Math.round(Math.random() * 1E6);
   }
 
+  dateString(): string {
+    return new Date().toDateString();
+  }
+
   fillForm(user: IUser): void {
     if (user ?? null) {
       this.userFormGroup.patchValue(user);
     }
+  }
+
+  updateId(): void {
+    this.userFormGroup.patchValue({
+      id: this.randomId(),
+      createdAt: this.dateString(),
+    });
   }
 
   userFormInit(): void {
@@ -53,7 +64,7 @@ export class UserFormComponent implements OnChanges {
       id: [this.randomId()],
       name: [null, [required]],
       email: [null, [required, email]],
-      createdAt: [new Date().toDateString()],
+      createdAt: [this.dateString()],
     });
   }
 
@@ -62,6 +73,7 @@ export class UserFormComponent implements OnChanges {
     if (valid) {
       this.submit.emit(value);
       this.userFormGroup.reset();
+      this.updateId();
     }
   }
 }
