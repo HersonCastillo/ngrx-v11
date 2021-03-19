@@ -13,3 +13,19 @@ export const retrievePostListSuccess = createAction(
 export const retrievePostListFail = createAction(
   '[Post] Retrieve list of post from API (Fail)',
 );
+
+// Create Post
+
+export const createPost = createAction(
+  '[Post] Create a new Post',
+  props<{ post: IPost }>(),
+);
+
+export const createPostSuccess = createAction(
+  '[Post] Create a new Post (Success)',
+);
+
+export const createPostFail = createAction(
+  '[Post] Create a new Post',
+  props<{ error: string, statusCode: number }>(),
+);

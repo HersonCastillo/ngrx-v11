@@ -3,6 +3,9 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { CoreModule } from 'src/app/modules/core/core.module';
 import { PostService } from 'src/app/modules/core/services/post.service';
 import {
+  createPost,
+  createPostFail,
+  createPostSuccess,
   retrievePostList,
   retrievePostListFail,
   retrievePostListSuccess
@@ -24,6 +27,17 @@ export class PostEffects {
     exhaustMap(() => this.postService.retrievePosts().pipe(
       map((posts) => retrievePostListSuccess({ posts })),
       catchError(() => of(retrievePostListFail())),
+    )),
+  ));
+
+  createPost$ = createEffect(() => this.actions$.pipe(
+    ofType(createPost),
+    exhaustMap((props) => this.postService.createPost(props.post).pipe(
+      map(() => createPostSuccess()),
+      catchError(({ message, statusCode }) => of(createPostFail({
+        error: message,
+        statusCode,
+      }))),
     )),
   ));
 }

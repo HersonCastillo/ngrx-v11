@@ -12,3 +12,8 @@ export const getLoadingPost = createSelector(
   getPostState,
   (state) => (state.loading),
 );
+
+export const getErrorMessage = createSelector(
+  getPostState,
+  (state) => (state.errorMessage),
+);

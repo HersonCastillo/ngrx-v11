@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { retrievePostList, retrievePostListFail, retrievePostListSuccess } from '../actions/post.actions';
+import { createPost, createPostFail, createPostSuccess, retrievePostList, retrievePostListFail, retrievePostListSuccess } from '../actions/post.actions';
 import { postInitialState } from '../states/post.states';
 
 export const postReducers = createReducer(
@@ -17,5 +17,20 @@ export const postReducers = createReducer(
     ...state,
     loading: false,
     // More logic here
+  })),
+
+  on(createPost, (state) => ({
+    ...state,
+    loading: true,
+  })),
+  on(createPostSuccess, (state) => ({
+    ...state,
+    loading: false,
+  })),
+  on(createPostFail, (state, { statusCode, error }) => ({
+    ...state,
+    errorMessage: error,
+    errorStatusCode: statusCode,
+    loading: false,
   })),
 );

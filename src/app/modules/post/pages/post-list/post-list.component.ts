@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { retrievePostList } from 'src/app/store/actions/post.actions';
+import { createPost, retrievePostList } from 'src/app/store/actions/post.actions';
 import { getLoadingPost, getPosts } from 'src/app/store/selectors/post.selector';
 import { IAppState } from 'src/app/store/states/app.states';
 
