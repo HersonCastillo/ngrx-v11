@@ -3,7 +3,7 @@
     <th *ngFor="let header of headers">
       {{ header.name }}
     </th>
-    <th *ngIf="actions.length > 0">
+    <th *ngIf="actions?.length > 0">
       Actions
     </th>
   </tr>
@@ -18,7 +18,7 @@
     </td>
   </tr>
   <tr *ngIf="dataset.length === 0">
-    <td [attr.colspan]="headers.length + (actions.length > 0 ? 1 : 0)">
+    <td [attr.colspan]="headers.length + (actions?.length > 0 ? 1 : 0)">
       No records to show
     </td>
   </tr>
